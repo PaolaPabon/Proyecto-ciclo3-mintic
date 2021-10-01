@@ -1,4 +1,4 @@
-require ('dotenv').config()
+require("dotenv").config();
 
 // CONFIGURACION DEL SERVIDOR
 
@@ -9,6 +9,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
+
+// AGREGAR LAS RUTAS A ESCUCHAR
+app.use("/api", require("./routes/rutas"));
+
+// CONFIGURAR LA CONEXION A LA BASE DE DATOS
+const mongoose = require("mongoose");
+mongoose.connect(process.env.DB_URI)
+    .then(() => console.log("Conectado a la base de datos"))
+    .catch(err => console.error(err));
+
 
 // INICIAR SERVIDOR
 const port = process.env.PORT;
