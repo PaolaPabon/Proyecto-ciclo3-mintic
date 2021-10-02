@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.get("/programas", ProgramasController.getAll);
 router.get("/programas/:id", ProgramasController.getById);
-//router.post("/programas", ProgramasController.insert);
-//router.put("/programas/:id", ProgramasController.update);
-//router.delete("/programas/:id", ProgramasController.delate);
+router.post("/programas", ProgramasController.insert);
+router.put("/programas/:id", ProgramasController.update);
+router.delete("/programas/:id", ProgramasController.delate);
 
 
 module.exports= router;
