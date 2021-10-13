@@ -4,9 +4,10 @@ const programaEsquema = mongoose.Schema({
     "code": Number,
     "Titulo": String,
     "Descripción": String,
-    "Plan Mensual": String,
-    "Plan Semestral": String,
-    "Plan Anual": String
+    "PlanM": String,
+    "PlanS": String,
+    "PlanA": String,
+    "Subtitulo": String
 });
 
 module.exports	= mongoose.model("Programa",programaEsquema);

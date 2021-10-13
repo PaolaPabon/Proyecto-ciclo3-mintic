@@ -10,11 +10,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
+  
   {
     path: '/Nosotros',
     name: 'Nosotros',
@@ -27,9 +23,24 @@ const routes = [
   },
   
   {
-    path: '/Mi Cuenta',
-    name: 'Mi Cuenta',
-    component: () => import('../views/Mi Cuenta.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/login.vue')
+  },
+  {
+    path: '/inscripcion',
+    name: 'inscripcion',
+    component: () => import('../views/Inscripcion.vue')
+  },
+  {
+    path: '/Cuenta',
+    name: 'Cuenta',
+    component: () => import('../views/Cuenta.vue')
+  },
+  {
+    path: '/Entrenadores',
+    name: 'Entrenadores',
+    component: () => import('../views/Entrenadores.vue')
   },
 ]
 

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -96,9 +96,7 @@
         
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>                
         
-        
         <v-app-bar-title> 
-          <v-img src="require('./assets/logos/logotipo.png)" alt="logotipo"></v-img>
           <h2>{{title}}</h2>
         </v-app-bar-title>
 
@@ -107,7 +105,7 @@
         <v-btn icon>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
-
+        
       <v-menu
         bottom
         left
@@ -122,42 +120,7 @@
             <v-icon>mdi-account-box-multiple</v-icon>
           </v-btn>
         </template>
-        <v-card
-              class="mx-auto"
-              max-width="500"
-            >
-              <v-toolbar
-                color="teal"
-                dark
-              >
-                <v-toolbar-title>Mi cuenta</v-toolbar-title>
-              </v-toolbar>
-
-              <v-list>
-                <v-list-group
-                  v-for="item in items"
-                  :key="item.title"
-                  v-model="item.active"
-                  :prepend-icon="item.action"
-                  no-action
-                >
-                  <template v-slot:activator>
-                    <v-list-item-content>
-                      <v-list-item-title v-text="item.title"></v-list-item-title>
-                    </v-list-item-content>
-                  </template>
-
-                  <v-list-item
-                    v-for="child in item.items"
-                    :key="child.title"
-                  >
-                    <v-list-item-content>
-                      <v-list-item-title v-text="child.title"></v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-group>
-              </v-list>
-        </v-card>
+        <musuario @click="muser = !muser"></musuario>
       </v-menu>
 
       <template v-slot:extension>
@@ -167,7 +130,7 @@
           slider-color="yellow"
         >
           <v-tab
-            v-for="item in menuvertical"
+            v-for="item in menuhorizontal"
             :key="item.title"
             :to ="item.page"
           >
@@ -233,15 +196,19 @@
 </template>
 
 <script>
-import logotipo from  './assets/logos/logotipo.png'
+import musuario from  './components/musuario.vue';
+import logotipo from  './assets/logos/logotipo.png';
 
 export default {
- 
-  data (){
+  components: {
+       musuario
+    },
+   data (){
+     
     return {
       logotipo:logotipo,
       title: 'ENERGYM',
-      drawer: false,
+      muser: false,
       admins: [
         ['Administrador', 'mdi-account-multiple-outline'],
         ['Configuración', 'mdi-cog-outline'],
@@ -252,48 +219,12 @@ export default {
         ['Update', 'mdi-update'],
         ['Delete', 'mdi-delete'],
       ],
-      items: [
-        {
-          action: 'mdi-ticket',
-          items: [{ title: 'List Item' }],
-          title: 'Programa de Gym',
-        },
-        {
-          action: 'mdi-silverware-fork-knife',
-          active: true,
-          items: [
-            { title: 'Desayuno' },
-            { title: 'Almuerzo' },
-            { title: 'Cena' },
-          ],
-          title: 'Dieta',
-        },
-        {
-          action: 'mdi-school',
-          items: [{ title: 'List Item' }],
-          title: 'Entrenador',
-        },
-        {
-          action: 'mdi-run',
-          items: [{ title: 'List Item' }],
-          title: 'Couch',
-        },
-        {
-          action: 'mdi-bottle-tonic-plus',
-          items: [{ title: 'List Item' }],
-          title: 'Salud',
-        },
-        
-        {
-          action: 'mdi-tag',
-          items: [{ title: 'List Item' }],
-          title: 'Promociomes',
-        },
-      ],
-      menuvertical:[
+      
+      menuhorizontal:[
+          { title: 'Inicio',page:'/'},
           { title: 'Nosotros',page:'Nosotros'},
           { title: 'Programas', page:'/Programas' },
-          { title: 'Mi cuenta', page:'/Mi Cuenta'},
+          { title: 'Mi cuenta', page:'/login'},
       ],
       icons: [
         'mdi-facebook',
@@ -301,7 +232,8 @@ export default {
         'mdi-linkedin',
         'mdi-instagram',
       ],
-      };
+      
+    };
     },
-  };
+}
 </script>
