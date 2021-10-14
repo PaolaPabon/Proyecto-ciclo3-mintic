@@ -27,11 +27,12 @@ module.exports= class programasController {
     static async insert (req, res) {
         try{
             const programa = req.body;
-            const imageName = req.file.filename;
-            if (imageName != undefined){
-                programa.imageUrl = "/" + imageName;
+            
+            if (req.file != undefined){
+                const imageName = req.file.filename;
+                programa.imageurl = "/" + imageName;
             }
-            const newPrograma = await programaModel.create(product);
+            const newPrograma = await programaModel.create(programa);
             res.status(201).json(newPrograma);
         } catch (err) {
             res.status(400).json({ message: err.message });

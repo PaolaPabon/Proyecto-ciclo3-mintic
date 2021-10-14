@@ -14,10 +14,16 @@
                 max-width="400"
                 >   
                 <v-img
-                 src=""
+                   
+                    :src="
+                    programa.imageurl == undefined
+                        ? 'https://isocarp.org/app/uploads/2014/05/noimage.jpg'
+                        : programa.imageurl
+                        "
+                        height="200px"
                 ></v-img>
-                    
-                <v-card-title>{{programa.Titulo}}</v-card-title>  
+                <v-card-title class="orange--text ">
+                        <div class="text-h5 ">{{programa.Titulo}}</div></v-card-title>  
                 <v-card-subtitle>{{programa.Subtitulo}}</v-card-subtitle>               
                                    
                 <v-card-text class="text--primary"><p>{{programa.Descripción}}</p>

@@ -8,7 +8,8 @@ const programaEsquema = mongoose.Schema({
     "PlanS": String,
     "PlanA": String,
     "Subtitulo": String,
-    "imageUrl": String
+    "imageurl":String
+    
 });
 
 module.exports	= mongoose.model("Programa",programaEsquema);
