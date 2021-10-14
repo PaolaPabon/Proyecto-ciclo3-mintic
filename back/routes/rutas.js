@@ -4,13 +4,26 @@ const UsersController = require("../controllers/usersController");
 const EntrenadoresController = require("../controllers/entrenadoresController");
 const ClientesController = require("../controllers/clientesController");
 
+// Carga de archivos
+const multer = require("multer");
+const storageConfig = multer.diskStorage({
+    destination: (req, res, cb) => {
+        cb(null, "./uploads");
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storageConfig });
+
 const router = express.Router();
 
 // rutas de productos
 
 router.get("/programas", ProgramasController.getAll);
 router.get("/programas/:code", ProgramasController.getByCode);
-router.post("/programas", ProgramasController.insert);
+router.post("/programas", upload.single("image"), ProgramasController.insert);
 router.put("/programas/:code", ProgramasController.update);
 router.delete("/programas/:code", ProgramasController.delate);
 

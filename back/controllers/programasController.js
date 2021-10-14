@@ -24,14 +24,18 @@ module.exports= class programasController {
             }
         
     }
-    static async insert (request, response) {
+    static async insert (req, res) {
         try{
-            const programa = request.body;
-            const nuevoprograma = await programaModel.create(programa);
-            response.status(201).json(nuevoprograma);
-            } catch (err) {
-                response.status(400).json({message: err.message});
+            const programa = req.body;
+            const imageName = req.file.filename;
+            if (imageName != undefined){
+                programa.imageUrl = "/" + imageName;
             }
+            const newPrograma = await programaModel.create(product);
+            res.status(201).json(newPrograma);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
         
     }
     static async update (request, response) {
@@ -41,10 +45,10 @@ module.exports= class programasController {
             const actualizarprograma = await programaModel.updateOne({"code":code},programa);
             response.status(200).json(actualizarprograma);
             } catch (err) {
-                    response.status(400).json({message: err.message});
-            }
-        
+                response.status(400).json({message: err.message});
+            } 
     }
+
     static async delate (request, response) {
         try{
             const code = request.params.code;
@@ -53,8 +57,7 @@ module.exports= class programasController {
             } catch (err) {
                     response.status(400).json({message: err.message});
             }
-        
-    }
+        }
         
     }
 

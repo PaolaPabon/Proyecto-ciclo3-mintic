@@ -5,9 +5,9 @@
       <v-text-field
         label="Nombre de Usuario"
         prepend-icon="mdi-account"
-        :rules="rulesName"
+        :rules="rulesCode"
         hide-details="auto"
-        v-model="email"
+        v-model="code"
       ></v-text-field>
 
       <v-text-field
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       showPassword:false,
-      email: "",
+      code: "",
       password: "",
       reg: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       rulesName: [
@@ -64,7 +64,7 @@ export default {
       validateUser(this.email, this.password)
         .then((response) => {
           const user = response.data;
-          sessionStorage.setItem("username", user.username);
+          sessionStorage.setItem("code", user.code);
           sessionStorage.setItem("role", user.role);
           this.$emit("logged", undefined);
           this.$router.push("/Cuenta/")

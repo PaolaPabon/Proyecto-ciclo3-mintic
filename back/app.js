@@ -13,6 +13,9 @@ app.use(express.urlencoded({extended:true}))
 // AGREGAR LAS RUTAS A ESCUCHAR
 app.use("/api", require("./routes/rutas"));
 
+// CARGA DE ARCHIVOS
+app.use(express.static("uploads"));
+
 // CONFIGURAR LA CONEXION A LA BASE DE DATOS
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DB_URI)

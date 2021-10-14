@@ -37,11 +37,7 @@ const routes = [
     name: 'Cuenta',
     component: () => import('../views/Cuenta.vue')
   },
-  {
-    path: '/Entrenadores',
-    name: 'Entrenadores',
-    component: () => import('../views/Entrenadores.vue')
-  },
+  
 ]
 
 const router = new VueRouter({

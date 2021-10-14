@@ -1,8 +1,8 @@
 <template>
   <v-container>
-      <v-container>
+      <v-container id="programas">
         <v-card>
-        <v-card-text class="text-h3 text--amarillo oscuro-3">Programas</v-card-text>
+        <v-card-title class="orange--text"><div class="text-h3">Programas</div></v-card-title>
         </v-card>
         <v-row>
             
@@ -14,18 +14,23 @@
                 max-width="400"
                 >   
                 <v-img
-                 src="https://lh3.googleusercontent.com/proxy/GDwatfML1x2WmhFsrY46CgM1tCbNIqE1WoZKGmsQmdFgKoePD0AnyDu1F_r7RKmLawyBMdyDAR_coJS3rBVcIkkvv4922XZszfY76IvAGDNwfS3jq6kBxqoOZMVK7jS0YAhnFsTO6-qn9D3W7w"
+                 src=""
                 ></v-img>
                     
-                <v-card-title>{{programa.Titulo}}</v-card-title>                 
+                <v-card-title>{{programa.Titulo}}</v-card-title>  
+                <v-card-subtitle>{{programa.Subtitulo}}</v-card-subtitle>               
                                    
-                <v-card-text class="text--primary">
-                    <p>{{programa.Descripción}}</p>
+                <v-card-text class="text--primary"><p>{{programa.Descripción}}</p>
                     </v-card-text>
-
-                    <v-card-text><p class="font-weight-bold">Plan Mensual:</p>{{programa.PlanM}}</v-card-text>
+                    <v-card-text class="font-weight-bold"><p >Plan Mensual:</p>{{programa.PlanM}}</v-card-text>
                     <v-card-subtitle><p class="font-weight-bold">Plan Semestral</p>{{programa.PlanS}}</v-card-subtitle>
                     <v-card-subtitle><p class="font-weight-bold">Plan Anual</p>{{programa.PlanA}}</v-card-subtitle>
+                    
+                    <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="success" @click="inscripcion()">Inscribirme</v-btn>
+                    </v-card-actions>
+              
                                       
                 </v-card>
            
@@ -33,9 +38,65 @@
         </v-row>
       </v-container>
       
+    <v-divider></v-divider>
+    <v-container id="entrenadoress">
+        <v-card>
+        <v-card-title class="orange--text"><div class="text-h3">Entrenadores</div></v-card-title>
+        </v-card>
+        <v-row>
+            <v-col v-for="entrenador in entrenadors" :key="entrenador.code" md="4" xs="12">
+                <v-card
+                    max-width="375"
+                    class="mx-auto"
+                >
+                    <v-img
+                    src="https://www.precor.com/es-xl/blog/wp-content/uploads/sites/6/2017/02/Precor_In-Club_DPL-DSL-Coach_C1_1311-600x400.jpg"
+                    height="200px"
+                    dark
+                    >
+                    </v-img>
+                    <v-card-title class="orange--text ">
+                        <div class="text-h5 ">
+                            {{entrenador.name}}
+                         </div>
+                    </v-card-title>
+                    <v-card-subtitle>{{entrenador.profesion}}</v-card-subtitle>
+                    <v-list-item>
+                        <v-list-item-icon>
+                        <v-icon color="indigo">
+                            mdi-phone
+                        </v-icon>
+                        </v-list-item-icon>
+
+                        <v-list-item-content>
+                        <v-list-item-title>{{entrenador.telefono}}</v-list-item-title>
+                        <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+                        </v-list-item-content>
+                        
+                    </v-list-item>
+                 
+                   <v-divider class="mx-4"></v-divider>
+
+                    <v-list-item>
+                        <v-list-item-icon>
+                        <v-icon color="indigo">
+                            mdi-email
+                        </v-icon>
+                        </v-list-item-icon>
+
+                        <v-list-item-content>
+                        <v-list-item-title>{{entrenador.email}}</v-list-item-title>
+                        <v-list-item-subtitle>Personal</v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
+
+                </v-card>   
+            </v-col>
+        </v-row>
+      </v-container>
             
-      <v-divider></v-divider>
-        <v-container>
+
+        <v-container id="novedades">
             
             <v-card-text class="text-h3 text--amarillo oscuro-3">Novedades</v-card-text>
             
@@ -65,19 +126,21 @@
                     </v-card>
                 </v-col>
             </v-row>
-      </v-container>
+        </v-container>
   </v-container>
   
 </template>
 
 <script>
 import {getAllProgramas} from "../services/programasservice";
+import {getAllEntrenadores} from "../services/entrenadoresservice";
 
 export default {
     
     data () {
         return{
         programas:[],
+        entrenadors:[],
         
         imagenes: [
             {
@@ -135,7 +198,17 @@ export default {
                 this.programas = response.data;
             })
             .catch ((err) => console.error(err));
-
+        
+        getAllEntrenadores()
+            .then((response)=> {
+                this.entrenadors = response.data;
+            })
+            .catch ((err) => console.error(err));
+    },
+    methods: { 
+        inscripcion () {
+        this.$router.push("/Inscripcion/")
+      },
     }
 }
 </script>
