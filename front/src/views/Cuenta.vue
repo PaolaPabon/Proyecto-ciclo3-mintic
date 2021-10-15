@@ -9,17 +9,18 @@
             color="grey lighten-4"
             class="pa-4"
           >
-            <v-avatar
-              class="mb-4"
-              color="grey darken-1"
-              size="64"
-            ></v-avatar>
+             <v-img
+                    src=
+                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWd2Er6aGk46GpGePsuN9SgkYasGWZfc0L2jtrg4dSenLmtdD7kcWxTKaG0qp1osENax4&usqp=CAU'
+                        
+                        height="200"
+                        width="200"
+                    ></v-img>
 
-            <div>john@energym.com</div>
+            <div>{{email}}</div>
           </v-sheet>
 
           <v-divider></v-divider>
-
           <menucuenta></menucuenta>
         </v-list>
       </v-col>
@@ -30,37 +31,120 @@
               fluid
             >
               <v-row>
-                <v-col
-                  v-for="card in cards"
-                  :key="card"
-                  cols="12"
+                <v-col cols="12"
                 >
-                  <v-card>
-                    <v-subheader>{{ card }}</v-subheader>
-
+                  <v-card id="name">
+                    <v-subheader class="amber--text"><div class="text-h3"> BIENVENID@! </div></v-subheader>
+                     
                     <v-list two-line>
-                      <template v-for="n in 2">
-                        <v-list-item
-
-                          :key="n"
-                        >
-                          <v-list-item-avatar color="grey darken-1">
-                          </v-list-item-avatar>
-
-                          <v-list-item-content>
-                            <v-list-item-title>Message {{ n }}</v-list-item-title>
-
-                            <v-list-item-subtitle>
-                              
-                            </v-list-item-subtitle>
+                      <template  >
+                        <v-list-item >
+                            <v-list-item-content>
+                            <v-list-item-title class="text-h3" >{{username}}</v-list-item-title>
+                         
                           </v-list-item-content>
                         </v-list-item>
 
-                        <v-divider
-                          v-if="n !== 6"
-                          :key="`divider-${n}`"
-                          inset
-                        ></v-divider>
+                        <v-divider></v-divider>
+                      </template>
+                    </v-list>
+                  </v-card>
+                    <v-card id="plans">
+                    <v-subheader class="orange--text"><div class="text-h5"> Tu programa es: </div></v-subheader>
+                     
+                    <v-list two-line>
+                      <template  >
+                        <v-list-item >
+                            <v-list-item-content>
+                            <v-list-item-title>{{plan}}</v-list-item-title>
+
+                          </v-list-item-content>
+                        </v-list-item>
+
+                        <v-divider></v-divider>
+                      </template>
+                    </v-list>
+                  </v-card>
+                  <v-card id="entrenar">
+                   <v-subheader class="orange--text"><div class="text-h5"> Entrenador designado: </div></v-subheader>
+                     
+                    <v-list two-line>
+                      <template  >
+                        <v-list-item >
+                            <v-list-item-content>
+                                                                                   
+                            <v-list-item-title>{{ asesor }}</v-list-item-title>
+                               
+                          </v-list-item-content>
+                        </v-list-item>
+
+                        <v-divider></v-divider>
+                      </template>
+                    </v-list>
+                  </v-card>
+                  <v-card id="horas">
+                    <v-subheader class="orange--text"><div class="text-h5"> Horario semanal: </div></v-subheader>
+                     
+                    <v-list two-line>
+                      <template  >
+                        <v-list-item >
+                            <v-list-item-content>                            
+                            <v-list-item-title>{{ horario }}</v-list-item-title>
+   
+                          </v-list-item-content>
+                        </v-list-item>
+
+                        <v-divider></v-divider>
+                      </template>
+                    </v-list>
+                  </v-card>
+                  <v-card id="planentreno">
+                    
+                    <v-subheader class="orange--text"><div class="text-h5"> Plan de entrenamiento</div></v-subheader>
+                     
+                    <v-list two-line>
+                      <template  >
+                        <v-list-item >
+                            <v-list-item-content>                            
+                            
+                            <v-list-item-title>{{ entrenamiento }}</v-list-item-title>
+                            <v-img src="https://i.pinimg.com/originals/09/42/55/0942555f75fc9ec33c3b5231e587b0e9.jpg"
+                                height="500"
+                                width="40"
+                                dark>
+                                
+                                </v-img>
+
+                          </v-list-item-content>
+                        </v-list-item>
+
+                        <v-divider></v-divider>
+                      </template>
+                    </v-list>
+                  </v-card>
+                  <v-card id="plandieta">
+                    <v-subheader class="orange--text"><div class="text-h5"> Dieta semanal </div></v-subheader>
+                     
+                    <v-list two-line>
+                      <template  >
+                        <v-list-item >
+                            <v-list-item-content>                            
+
+                            <v-list-item-title>{{dieta}} </v-list-item-title>
+                            
+                              
+                                <v-img src="https://image.slidesharecdn.com/menusemanalparaadelgazarpdf-180624154550/95/menu-semanal-para-adelgazar-pdf-1-638.jpg?cb=1529855536"
+                                height="500"
+                                width="40"
+                                dark>
+                                
+                                </v-img>
+                              
+
+                          </v-list-item-content>
+                        </v-list-item>
+
+                        <v-divider></v-divider>
                       </template>
                     </v-list>
                   </v-card>
@@ -88,15 +172,24 @@ import menucuenta from "../components/menucuenta.vue";
       menucuenta
     },
     data: () => ({
-      cards: ['Entrenador', 'Horario', 'Plan de entrenamiento', 'Dieta'],
-      drawer: null,
-      links: [
-        ['mdi-inbox-arrow-down', 'Inbox'],
-        ['mdi-send', 'Send'],
-        ['mdi-delete', 'Trash'],
-        ['mdi-alert-octagon', 'Spam'],
-      ],
+      
+      code:"",
+      username:"",
+      email:"",
+      password:"",
+      plan:"",
+      asesor:"",
+      horario:"",
+      entrenamiento:"",
+      dieta:"",
+      pdieta:[
+        {d:"saludable",img:"https://info.mercadona.es/img-cont/es/-imagen-batch-cooking-1.jpg"},
+        {d:"fitness",img:"https://www.alimmenta.com/wp-content/uploads/2019/11/Men%C3%BA-dina-4-imprimir-1024x724.png"},
+        {d:"vegetarina",img:"https://comedelahuerta.com/wp-content/uploads/2020/10/Menu-semanal-ecologico-de-noviembre.jpg"},
+
+      ]
     }),
+     
      
     created() {
     console.log("code: " + this.$route.params.code);
@@ -114,7 +207,8 @@ import menucuenta from "../components/menucuenta.vue";
           this.asesor = cliente.asesor;
           this.horario = cliente.horario;
           this.entrenamiento = cliente.entrenamiento;
-          this.dieta = cliente.dieta
+          this.dieta = cliente.dieta;
+         
 
         })
         .catch(() => this.openErrorDialog("Datos no encontrados"));

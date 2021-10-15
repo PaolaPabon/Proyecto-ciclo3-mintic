@@ -3,7 +3,7 @@
     <v-card-title>Mi Cuenta</v-card-title>
     <v-card-text>
       <v-text-field
-        label="Nombre de Usuario"
+        label="Numero de identificación"
         prepend-icon="mdi-account"
         :rules="rulesCode"
         hide-details="auto"
@@ -27,7 +27,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn id="boton" color="success" v-on:click="login()"
+      <v-btn id="boton" color="success" v-on:click="login(code)"
         >Iniciar sesion</v-btn
       >
       <v-btn id="boton" color="primary" v-on:click="inscripcion()"
@@ -46,7 +46,7 @@ export default {
       showPassword:false,
       code: "",
       password: "",
-      reg: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+      
       rulesName: [
         (value) => !!value || "Requerido.",
         (value) => value && value.length <= 50,
@@ -60,14 +60,14 @@ export default {
     };
   },
   methods: {
-    login() {
-      validateUser(this.email, this.password)
+    login(code) {
+      validateUser(this.code, this.password)
         .then((response) => {
           const user = response.data;
           sessionStorage.setItem("code", user.code);
-          sessionStorage.setItem("role", user.role);
-          this.$emit("logged", undefined);
-          this.$router.push("/Cuenta/")
+          sessionStorage.setItem("password", user.password);
+          
+          this.$router.push(`/Cuenta/${code}`)
           
         })
         .catch((err) => {

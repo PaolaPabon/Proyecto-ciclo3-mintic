@@ -24,13 +24,17 @@ module.exports= class clientesController {
             }
         
     }
-    static async insert (request, response) {
+    static async insert (req, res) {
         try{
-            const cliente = request.body;
+            const cliente = req.body;
+            if (req.file != undefined){
+                const imageName = req.file.filename;
+                cliente.imageurl = "/" + imageName;
+            }
             const nuevocliente = await clienteModel.create(cliente);
-            response.status(201).json(nuevocliente);
+            res.status(201).json(nuevocliente);
             } catch (err) {
-                response.status(400).json({message: err.message});
+                res.status(400).json({message: err.message});
             }
         
     }

@@ -24,13 +24,18 @@ module.exports= class entrenadoresController {
             }
         
     }
-    static async insert (request, response) {
+    static async insert (req, res) {
         try{
-            const entrenador = request.body;
+            const entrenador = req.body;
+            if (req.file != undefined){
+                const imageName = req.file.filename;
+                entrenador.imageurl = "/" + imageName;
+            }
             const nuevoentrenador = await entrenadorModel.create(entrenador);
-            response.status(201).json(nuevoentrenador);
+            res.status(201).json(nuevoentrenador);
+        
             } catch (err) {
-                response.status(400).json({message: err.message});
+                res.status(400).json({message: err.message});
             }
         
     }

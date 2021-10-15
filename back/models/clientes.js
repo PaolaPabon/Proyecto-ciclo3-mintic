@@ -11,6 +11,7 @@ const clienteEsquema = mongoose.Schema({
     "horario":String,
     "entrenamiento":String,
     "dieta":String,
+    "imageurl":String
 });
 
 module.exports	= mongoose.model("cliente",clienteEsquema);

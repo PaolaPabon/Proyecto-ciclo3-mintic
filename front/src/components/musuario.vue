@@ -60,11 +60,7 @@ export default {
         icon: 'mdi-star', 
         page:'/Programas',
         roles:[] },
-        {
-        text: 'Novedades', 
-        icon: 'mdi-history', 
-        page:'/Cuenta',
-        roles:[] },
+        
         { 
         text: 'Cerrar mi cuenta', 
         icon: 'mdi-check-circle', 

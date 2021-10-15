@@ -35,13 +35,13 @@ router.post("/authenticate", UsersController.validateUser);
 
 router.get("/entrenadores", EntrenadoresController.getAll);
 router.get("/entrenadores/:code", EntrenadoresController.getByCode);
-router.post("/entrenadores", EntrenadoresController.insert);
+router.post("/entrenadores", upload.single("image"), EntrenadoresController.insert);
 
 // rutas de productos
 
 router.get("/clientes", ClientesController.getAll);
 router.get("/clientes/:code", ClientesController.getByCode);
-router.post("/clientes", ClientesController.insert);
+router.post("/clientes", upload.single("image"), ClientesController.insert);
 router.put("/clientes/:code", ClientesController.update);
 router.delete("/clientes/:code", ClientesController.delate);
 

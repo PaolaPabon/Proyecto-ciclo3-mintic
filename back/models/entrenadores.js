@@ -8,7 +8,8 @@ const entrenadorEsquema = mongoose.Schema({
     "email": String,
     "telefono": Number,
     "password": String,
-    "role":String
+    "role":String,
+    "imageurl":String
 });
 
 module.exports	= mongoose.model("entrenador",entrenadorEsquema);

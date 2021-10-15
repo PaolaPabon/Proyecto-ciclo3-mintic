@@ -75,7 +75,11 @@
           required
         ></v-select>
         
-
+        <v-file-input
+            v-model="image"
+            accept="image"
+            label="File input"
+          ></v-file-input>
         <v-btn
           :disabled="!valid"
           color="success"
@@ -86,11 +90,11 @@
         </v-btn>
 
         <v-btn
-          color="error"
+          color="info"
           class="mr-4"
-          @click="reset"
+          @click="login()"
         >
-          Reset Form
+          Iniciar sesión
         </v-btn>
 
         
@@ -115,7 +119,7 @@ import { insertCliente } from "../services/clientesservice"
       dieta: '',
       nameRules: [
         v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+        v => (v && v.length <= 50) || 'Name must be less than 10 characters',
       ],
       emailRules: [
         v => !!v || 'E-mail is required',
@@ -128,9 +132,9 @@ import { insertCliente } from "../services/clientesservice"
         'GOLDENAGEGYM',
       ],
       asesores: [
-        'Jose',
-        'Pedro',
-        'Maria',
+        'Daniel Garcia',
+        'Antonio Muños',
+        
         
       ],
       horarios: [
@@ -163,6 +167,7 @@ import { insertCliente } from "../services/clientesservice"
           horario: this.horario,
           entrenamiento: this.entrenamiento,
           dieta: this.dieta
+
         };
           insertCliente(cliente)
             .then((response) => {
@@ -171,8 +176,8 @@ import { insertCliente } from "../services/clientesservice"
             .catch((err) => console.error(err));
         
       },
-      reset () {
-        this.$refs.form.reset()
+      login () {
+        this.$router.push("/Login/")
       }, 
     },
   }

@@ -14,7 +14,6 @@
                 max-width="400"
                 >   
                 <v-img
-                   
                     :src="
                     programa.imageurl == undefined
                         ? 'https://isocarp.org/app/uploads/2014/05/noimage.jpg'
@@ -26,9 +25,10 @@
                         <div class="text-h5 ">{{programa.Titulo}}</div></v-card-title>  
                 <v-card-subtitle>{{programa.Subtitulo}}</v-card-subtitle>               
                                    
-                <v-card-text class="text--primary"><p>{{programa.Descripción}}</p>
+                <v-card-text class="black--text"><p>{{programa.Descripción}}</p>
                     </v-card-text>
-                    <v-card-text class="font-weight-bold"><p >Plan Mensual:</p>{{programa.PlanM}}</v-card-text>
+                     <v-divider class="mx-4"></v-divider>
+                    <v-card-text class="font-weight-bold"><p class="orange--text ">Plan Mensual:</p>{{programa.PlanM}}</v-card-text>
                     <v-card-subtitle><p class="font-weight-bold">Plan Semestral</p>{{programa.PlanS}}</v-card-subtitle>
                     <v-card-subtitle><p class="font-weight-bold">Plan Anual</p>{{programa.PlanA}}</v-card-subtitle>
                     
@@ -56,11 +56,13 @@
                     class="mx-auto"
                 >
                     <v-img
-                    src="https://www.precor.com/es-xl/blog/wp-content/uploads/sites/6/2017/02/Precor_In-Club_DPL-DSL-Coach_C1_1311-600x400.jpg"
-                    height="200px"
-                    dark
-                    >
-                    </v-img>
+                    :src="
+                    entrenador.imageurl == undefined
+                        ? 'https://isocarp.org/app/uploads/2014/05/noimage.jpg'
+                        : entrenador.imageurl
+                        "
+                        height="200px"
+                    ></v-img>
                     <v-card-title class="orange--text ">
                         <div class="text-h5 ">
                             {{entrenador.name}}

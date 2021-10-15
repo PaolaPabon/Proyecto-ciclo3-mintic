@@ -33,7 +33,7 @@ const routes = [
     component: () => import('../views/Inscripcion.vue')
   },
   {
-    path: '/Cuenta',
+    path: '/Cuenta/:code',
     name: 'Cuenta',
     component: () => import('../views/Cuenta.vue')
   },
