@@ -22,6 +22,16 @@ mongoose.connect(process.env.DB_URI)
     .then(() => console.log("Conectado a la base de datos"))
     .catch(err => console.error(err));
 
+// DESPLIEGUE DEL FRONT EN PRODUCTION
+
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static(__dirname+"/site/"));
+    app.get("*",(req,res)=>{
+        res.sendFile(__dirname+"/site/index.html");
+    });
+}
+
+
 
 // INICIAR SERVIDOR
 const port = process.env.PORT;
