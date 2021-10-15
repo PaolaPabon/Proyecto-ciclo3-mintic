@@ -66,7 +66,7 @@ export default {
           const user = response.data;
           sessionStorage.setItem("code", user.code);
           sessionStorage.setItem("password", user.password);
-          
+          this.$emit("logged", undefined);
           this.$router.push(`/Cuenta/${code}`)
           
         })

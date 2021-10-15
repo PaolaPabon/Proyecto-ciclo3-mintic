@@ -13,8 +13,8 @@
                     src=
                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWd2Er6aGk46GpGePsuN9SgkYasGWZfc0L2jtrg4dSenLmtdD7kcWxTKaG0qp1osENax4&usqp=CAU'
                         
-                        height="200"
-                        width="200"
+                      height="200"
+                      width="200"
                     ></v-img>
 
             <div>{{email}}</div>

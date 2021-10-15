@@ -22,15 +22,16 @@
             </template>
 
             <v-img
-              height="250"
-              src="card.img"
+              :src="card.img"
+              height="200"
+              width="200"
             ></v-img>
 
-            <v-card-title>{{card.t}}</v-card-title>
+            <v-card-title class="green--text"> <div class="text-h3"> {{card.t}}</div></v-card-title>
 
             <v-card-text>
               <v-divider class="mx-4"></v-divider>
-              <div>{{card.text}}</div>
+              <div class="black--text">{{card.text}}</div>
             </v-card-text>
 
 

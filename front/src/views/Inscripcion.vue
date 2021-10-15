@@ -75,11 +75,7 @@
           required
         ></v-select>
         
-        <v-file-input
-            v-model="image"
-            accept="image"
-            label="File input"
-          ></v-file-input>
+       
         <v-btn
           :disabled="!valid"
           color="success"
@@ -96,6 +92,16 @@
         >
           Iniciar sesión
         </v-btn>
+         <msgconfirmacion
+          :message="msgconfirmacion"
+          :snackbar="successShow"
+          :close="closeSuccessDialog"
+        ></msgconfirmacion>
+        <ErrorMessage
+          :message="errorMessage"
+          :snackbar="errorShow"
+          :close="closeErrorDialog"
+        ></ErrorMessage>
 
         
   </v-form>
@@ -103,8 +109,11 @@
 
 <script>
 import { insertCliente } from "../services/clientesservice"
-
+import msgconfirmacion from "../components/msgconfirmacion.vue"
  export default {
+   components: {
+     msgconfirmacion
+   },
     data: () => ({
       valid: true,
       
@@ -152,11 +161,13 @@ import { insertCliente } from "../services/clientesservice"
         'Vegetariana',
         'Fitness',
       ],
-      
+      msgconfirmacion: "",
+      successShow: false,
     }),
 
     methods: {
       guardar () {
+        
         const cliente ={
           code: this.code,
           username: this.username,
@@ -170,15 +181,35 @@ import { insertCliente } from "../services/clientesservice"
 
         };
           insertCliente(cliente)
-            .then((response) => {
-              console.log("cliente creado", response.data._id);
-            })
-            .catch((err) => console.error(err));
+            .then((response) => 
+              this.openSuccessDialog(
+                 "Se ha creado el usuario: " + response.data._id
+            )
+            )
+            .catch((err) => {
+              console.error(err.response.data.message);
+              this.openErrorDialog("Error al guardar informacion");
+            });
         
       },
       login () {
         this.$router.push("/Login/")
       }, 
+      openSuccessDialog(mensaje) {
+      this.msgconfirmacion= mensaje;
+      this.successShow = true;
+    },
+    closeSuccessDialog() {
+      this.successShow = false;
+      this.$router.push("/login");
+    },
+    openErrorDialog(mensaje) {
+      this.errorMessage = mensaje;
+      this.errorShow = true;
+    },
+    closeErrorDialog() {
+      this.errorShow = false;
+    },
     },
   }
     
